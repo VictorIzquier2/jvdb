@@ -3,20 +3,28 @@
 
 int main(int argc, char *argv[]){
   FILE *archivo;
-  char *basededatos = argv[1];
-  char *nombrearchivo = argv[2];
-  
-  char ruta[100];
-  strcpy(ruta, basededatos);
-  strcat(ruta, "-");
-  strcat(ruta, nombrearchivo);
-  strcat(ruta, ".txt");
-  printf(ruta);
+  char *operacion = argv[1];
 
-  archivo = fopen(ruta, "a");
-  char *texto = argv[3];
-  fputs(strcat(texto, "\n"), archivo);
-  fclose(archivo);
+  if(strcmp(operacion, "select") == 0){
+    printf("te doy datos");
+  }else if(strcmp(operacion, "insert") == 0){
+    char *basededatos = argv[2];
+    char *nombrearchivo = argv[3];
+    
+    char ruta[100];
+    strcpy(ruta, basededatos);
+    strcat(ruta, "-");
+    strcat(ruta, nombrearchivo);
+    strcat(ruta, ".txt");
+    printf(ruta);
+
+    archivo = fopen(ruta, "a");
+    char *texto = argv[4];
+    fputs(strcat(texto, "\n"), archivo);
+    fclose(archivo);
+  }else{
+    printf("operación no valida: %s", operacion);
+  }
 
   return 0;
 }
